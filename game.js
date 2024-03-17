@@ -1,7 +1,3 @@
-// currently code works only for one level and with a set postition for barrel(not random)
-// from line 38 to line 67 and from line 93 to line 97 is newly added code and the one that needs to be reworked for more than 1 level 
-
-
 // 1. Suzdavame promenlivi
 let myX = 0
 myY = 0
@@ -21,7 +17,6 @@ dupka1 = randomInteger(200) + 100
 dupka2 = randomInteger(200) + 100
 dupka3 = randomInteger(200) + 100
 izp = 0
-gor = false
 
 function update() {
     // 2. Kodut tuk se izpulnqva 100 puti v sekunda
@@ -35,7 +30,6 @@ function update() {
 
     if (myY < 0) { myY = 0 }
 
-    if (myX < 149) {
         if ((leti == true) && (gorivo > 0)) {
             myY = myY - 2
             if (gorivo > 0) { gorivo = gorivo - 1 }
@@ -44,31 +38,6 @@ function update() {
             myY = myY + 2
             if (gorivo < 200) { gorivo = gorivo + 1 }
         }
-    }
-    else if (myX > 149 && gor == true) {
-        if ((leti == true) && (gorivo > 0)) {
-            myY = myY - 2
-            if (gorivo > 0) { gorivo = gorivo - 1 }
-        }
-        else {
-            myY = myY + 2
-            if (gorivo < 300) { gorivo = gorivo + 1 }
-        }
-    }
-    else if (myX > 149) {
-        if ((leti == true) && (gorivo > 0)) {
-            myY = myY - 2
-            if (gorivo > 0) { gorivo = gorivo - 1 }
-        }
-        else {
-            myY = myY + 2
-            if (gorivo < 200) { gorivo = gorivo + 1 }
-        }
-    }
-
-
-
-
 
 
     myX = myX + 1
@@ -89,13 +58,6 @@ function update() {
         areColliding(myX, myY, 50, 50, x2, pr2_vis + dupka2, 20, 500) ||
         areColliding(myX, myY, 50, 50, x3, 0, 20, pr3_vis) ||
         areColliding(myX, myY, 50, 50, x3, pr3_vis + dupka3, 20, 500)) { myX = 0 }
-
-    if (areColliding(myX, myY, 50, 50, 200, 200, 40, 60) && myX <= 150) {
-        gor = true
-        gorivo = gorivo + 100
-    }
-    console.log(gorivo)
-
 }
 
 function draw() {
@@ -113,8 +75,6 @@ function draw() {
     drawImage(paddle, x3, 0, 20, pr3_vis)
     drawImage(paddle, x3, pr3_vis + dupka3, 20, 500)
     drawImage(paddleGhost, 0, 0, gorivo, 20)
-
-    drawImage(barrelGreen, barx, bary, 40, 60)
 }
 
 function keyup(key) {
